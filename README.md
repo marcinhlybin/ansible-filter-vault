@@ -28,12 +28,11 @@ vault_password_file = vault.pass # this is from ansible-vault, if specified vaul
 1. encrypt password to be used in hostvar  
     `python filter_plugins/vault.py --encrypt my_secret_password_to_database`
 
-1. store encrypted password in hostvars
+1. store encrypted password in hostvars  
 ```
-vars:
-    db_password: {{ 'gAAAAABWasKsAvkyCqmc_8p57vGHOHkAG4nU4vo8t6n6C-j3hItbiwC1BRLnrHBJtrDP1Rz2wG1HULRG_zkXF596H0dn-69S92Ky3ixDOCAGesFptH1-glQ=' | vault }}
+vars:  
+  db_password: {{ 'gAAAAABWasKsAvkyCqmc_8p57vGHOHkAG4nU4vo8t6n6C-j3hItbiwC1BRLnrHBJtrDP1Rz2wG1HULRG_zkXF596H0dn-69S92Ky3ixDOCAGesFptH1-glQ=' | vault }}
 ```
-
 1. when needed you may decrypt password  
     `python filter_plugins/vault.py --decrypt gAAAAABWasKsAvkyCqmc_8p57vGHOHkAG4nU4vo8t6n6C-j3hItbiwC1BRLnrHBJtrDP1Rz2wG1HULRG_zkXF596H0dn-69S92Ky3ixDOCAGesFptH1-glQ=`
 
