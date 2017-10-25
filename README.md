@@ -1,17 +1,19 @@
 # Ansible vault filter
 
-Returns decrypted text from cipher text using secret key file. Allows to get rid of plain text passwords in ansible repository without using `ansible-vault` nor encrypting whole files
+Returns decrypted text from cipher text using secret key file. Allows to get rid of plain text passwords in ansible repository without using `ansible-vault` nor encrypting whole files.
+
+This release works with Ansible 2.4+
 
 ## Configuration
 
-Configuration options in `ansible.cfg`. Please notice section name `filters`:
+Configuration options in `ansible.cfg`. Please notice section name `vault_filter`:
 
 ```
-[filters]
-vault_filter_key = vault.key # might be relative or absolute path
-vault_filter_salt = 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 # generate random salt with '--salt' option
-vault_filter_iterations = 1000000 # PBKDF2-SHA512 iterations
-vault_filter_generate_key = yes # automatically generate vault key during playbook runtime
+[vault_filter]
+key = vault.key # might be relative or absolute path
+salt = 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 # generate random salt with '--salt' option
+iterations = 1000000 # PBKDF2-SHA512 iterations
+generate_key = yes # automatically generate vault key during playbook runtime
 
 [defaults]
 vault_password_file = vault.pass # this is from ansible-vault, if specified vault filter will use this password to generate vault filter key
