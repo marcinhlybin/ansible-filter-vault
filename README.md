@@ -2,7 +2,7 @@
 
 Returns decrypted text from cipher text using secret key file. Allows to get rid of plain text passwords in ansible repository without using `ansible-vault` nor encrypting whole files.
 
-This release works with Ansible 2.4+
+This release works with Ansible 2.5+
 
 ## Configuration
 

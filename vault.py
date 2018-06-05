@@ -20,15 +20,17 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 # Section in config file
-SECTION = 'vault_filter'
+CONFIG_SECTION = 'vault_filter'
 
 # Read config values
-config = ConfigManager()
-VAULT_FILTER_KEY = get_ini_config_value(config._parser, dict(section=SECTION, key='key')) or 'vault.key'
-VAULT_FILTER_SALT = get_ini_config_value(config._parser, dict(section=SECTION, key='salt')) or None
-VAULT_FILTER_ITERATIONS = get_ini_config_value(config._parser, dict(section=SECTION, key='iterations')) or 1000000
-VAULT_FILTER_GENERATE_KEY = get_ini_config_value(config._parser, dict(section=SECTION, key='generate_key')) or False
-DEFAULT_VAULT_PASSWORD_FILE = config.data.get_setting('DEFAULT_VAULT_PASSWORD_FILE').value
+config_manager = ConfigManager()
+config_parser = config_manager._parsers.values()[0]
+
+VAULT_FILTER_KEY = get_ini_config_value(config_parser, dict(section=CONFIG_SECTION, key='key')) or 'vault.key'
+VAULT_FILTER_SALT = get_ini_config_value(config_parser, dict(section=CONFIG_SECTION, key='salt')) or None
+VAULT_FILTER_ITERATIONS = get_ini_config_value(config_parser, dict(section=CONFIG_SECTION, key='iterations')) or 1000000
+VAULT_FILTER_GENERATE_KEY = get_ini_config_value(config_parser, dict(section=CONFIG_SECTION, key='generate_key')) or False
+DEFAULT_VAULT_PASSWORD_FILE = config_manager.data.get_setting('DEFAULT_VAULT_PASSWORD_FILE').value
 
 # Read environment variables
 VAULT_FILTER_KEY = os.getenv('VAULT_FILTER_KEY', VAULT_FILTER_KEY)
